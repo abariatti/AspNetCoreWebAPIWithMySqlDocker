@@ -1,0 +1,3 @@
+dotnet new web --name ConferenceApp.WebAPI
+cd ConferenceApp.WebAPI
+dotnet restore
