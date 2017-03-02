@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace ConferenceApp.WebAPI.Controllers
 {
     [Route("api/[controller]")]
-    public class ValuesController : Controller
+    public class SessionsController : Controller
     {
         // GET api/values
         [HttpGet]
