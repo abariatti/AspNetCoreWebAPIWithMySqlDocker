@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Configuration;
+using ConferenceApp.WebAPI.DataAccess;
+using Microsoft.EntityFrameworkCore;
 
 namespace ConferenceApp.WebAPI
 {
@@ -29,8 +31,15 @@ namespace ConferenceApp.WebAPI
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            // Add mysql support
+            services.AddDbContext<ConferenceAppContext>(x => 
+                x.UseMySql(Configuration.GetConnectionString("ConferenceAppConnection")));
+            
             // Add framework services.
             services.AddMvc();
+
+            // Add repository
+            services.AddTransient<ISessionRepository, ConferenceSessionRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
