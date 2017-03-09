@@ -16,20 +16,48 @@ namespace ConferenceApp.WebAPI.DataAccess
             _context = context;
         }
 
-        public async Task<List<Session>> GetSessionsAsync()
+        public async Task<List<Session>> All()
         {
             return await _context.Sessions.ToListAsync();
         }
 
-        public async Task Insert(Session session)
+        public async Task<Session> Get(int id)
+        {
+            return await _context.Sessions.FindAsync(id);
+        }
+
+        public async Task<Session> Insert(Session session)
         {
             _context.Sessions.Add(session);
             try
             {
                 await _context.SaveChangesAsync();
+                return session;
             }
-            catch { }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public async Task Update(Session session)
+        {
+            _context.Sessions.Update(session);
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public async Task Delete(int id)
+        {
+            var session = await _context.Sessions.FindAsync(id);
+            _context.Sessions.Remove(session);
+            await _context.SaveChangesAsync();
         }
     }
-
 }

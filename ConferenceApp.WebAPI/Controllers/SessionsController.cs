@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using ConferenceApp.WebAPI.DataAccess;
 using ConferenceApp.WebAPI.Models.Entities;
+using AutoMapper;
 
 namespace ConferenceApp.WebAPI.Controllers
 {
@@ -20,35 +21,49 @@ namespace ConferenceApp.WebAPI.Controllers
 
         [HttpGet]
         // GET: api/sessions/
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> GetAll()
         {
-            var stores = await _sessionRepository.GetSessionsAsync();
-            return View(stores);
+            var sessions = await _sessionRepository.All();
+            return Ok(sessions);
         }
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            var session = await _sessionRepository.Get(id);
+            return Ok(session);
         }
 
         // POST api/values
         [HttpPost]
-        public void Post([FromBody]string value)
+        public async Task<IActionResult> Post([FromBody]Session session)
         {
+            var saved = await _sessionRepository.Insert(session);
+            return Ok(saved);
         }
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody]string value)
+        public async Task<IActionResult> Put(int id, [FromBody]Session updated)
         {
+            Session session = await _sessionRepository.Get(id);
+
+            // Map the database session object with the updated properties
+            Mapper.Initialize(cfg => cfg.CreateMap<Session, Session>());
+            Mapper.Map(updated, session);
+
+            await _sessionRepository.Update(session);
+            return Ok();
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            Session session = await _sessionRepository.Get(id);
+            _sessionRepository.Delete(id);
+            return Ok();
         }
     }
 }

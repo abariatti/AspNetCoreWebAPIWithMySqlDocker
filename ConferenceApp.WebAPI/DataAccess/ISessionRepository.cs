@@ -8,7 +8,10 @@ namespace ConferenceApp.WebAPI.DataAccess
 {
     public interface ISessionRepository
     {
-        Task<List<Session>> GetSessionsAsync();
-        Task Insert(Session session);
+        Task<List<Session>> All();
+        Task<Session> Get(int id);
+        Task<Session> Insert(Session session);
+        Task Update(Session session);
+        Task Delete(int id);
     }
 }
