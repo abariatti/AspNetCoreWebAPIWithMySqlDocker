@@ -1,5 +1,4 @@
-﻿
-# ASP.NET Core Web API with MySql running in Docker
+﻿# ASP.NET Core Web API with MySql running in Docker
 
 Sample app to demonstrate the deployment of a simple ASP.NET core Web API with a MySql database in docker containers.
 
@@ -14,6 +13,7 @@ Docker https://www.docker.com/
 Clone this repository ```git clone https://github.com/abariatti/AspNetCoreWebAPIWithMySqlDocker.git```
 
 ```cd AspNetCoreWebAPIWithMySqlDocker```
+
 ```docker-compose up -d```
 
 Go to http://localhost:5000/api/sessions
