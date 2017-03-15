@@ -33,19 +33,19 @@ b53182ab27a5        conferenceapp-mysql    "docker-entrypoint..."   4 minutes ag
 
 Stopping containers
 
-``` docker stop 7c72c49ac0db b53182ab27a5
+``` docker stop 7c72c49ac0db b53182ab27a5 ```
 
 Deleting containers
 
-``` docker rm 7c72c49ac0db b53182ab27a5
+``` docker rm 7c72c49ac0db b53182ab27a5 ```
 
 Deleting volumes
 
-``` docker volumes prune
+``` docker volumes prune ```
 
 Deleting images 
 
-``` docker images 
+``` docker images ```
 ```
 REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
 conferenceapp-webapi   latest              be0ce7c7af59        7 minutes ago       901 MB
