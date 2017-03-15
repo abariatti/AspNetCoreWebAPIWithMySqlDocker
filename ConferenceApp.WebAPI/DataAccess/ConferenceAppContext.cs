@@ -11,6 +11,6 @@ namespace ConferenceApp.WebAPI.DataAccess
     {
         public ConferenceAppContext(DbContextOptions option) : base(option) { }
 
-        public DbSet<Session> Sessions { get; set; }
+        public DbSet<ConferenceSession> Sessions { get; set; }
     }
 }

@@ -16,17 +16,17 @@ namespace ConferenceApp.WebAPI.DataAccess
             _context = context;
         }
 
-        public async Task<List<Session>> All()
+        public async Task<List<ConferenceSession>> All()
         {
             return await _context.Sessions.ToListAsync();
         }
 
-        public async Task<Session> Get(int id)
+        public async Task<ConferenceSession> Get(int id)
         {
             return await _context.Sessions.FindAsync(id);
         }
 
-        public async Task<Session> Insert(Session session)
+        public async Task<ConferenceSession> Insert(ConferenceSession session)
         {
             _context.Sessions.Add(session);
             try
@@ -40,7 +40,7 @@ namespace ConferenceApp.WebAPI.DataAccess
             }
         }
 
-        public async Task Update(Session session)
+        public async Task Update(ConferenceSession session)
         {
             _context.Sessions.Update(session);
             try

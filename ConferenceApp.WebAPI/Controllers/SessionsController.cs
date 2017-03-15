@@ -37,7 +37,7 @@ namespace ConferenceApp.WebAPI.Controllers
 
         // POST api/values
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody]Session session)
+        public async Task<IActionResult> Post([FromBody]ConferenceSession session)
         {
             var saved = await _sessionRepository.Insert(session);
             return Ok(saved);
@@ -45,12 +45,12 @@ namespace ConferenceApp.WebAPI.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, [FromBody]Session updated)
+        public async Task<IActionResult> Put(int id, [FromBody]ConferenceSession updated)
         {
-            Session session = await _sessionRepository.Get(id);
+            ConferenceSession session = await _sessionRepository.Get(id);
 
             // Map the database session object with the updated properties
-            Mapper.Initialize(cfg => cfg.CreateMap<Session, Session>());
+            Mapper.Initialize(cfg => cfg.CreateMap<ConferenceSession, ConferenceSession>());
             Mapper.Map(updated, session);
 
             await _sessionRepository.Update(session);
@@ -61,8 +61,8 @@ namespace ConferenceApp.WebAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            Session session = await _sessionRepository.Get(id);
-            _sessionRepository.Delete(id);
+            ConferenceSession session = await _sessionRepository.Get(id);
+            await _sessionRepository.Delete(id);
             return Ok();
         }
     }

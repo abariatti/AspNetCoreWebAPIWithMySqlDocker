@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace ConferenceApp.WebAPI.Models.Entities
 {
-    [Table("session")]
-    public class Session
+    [Table("conference_session")]
+    public class ConferenceSession
     {
         [Column("id_session")]
         public int Id { get; set; }
@@ -18,8 +18,8 @@ namespace ConferenceApp.WebAPI.Models.Entities
         [Column("description")]
         public string Description { get; set; }
         [Column("time_start")]
-        public DateTime TimeStart { get; set; }
+        public DateTime? TimeStart { get; set; }
         [Column("time_end")]
-        public DateTime TimeEnd { get; set; }
+        public DateTime? TimeEnd { get; set; }
     }
 }
