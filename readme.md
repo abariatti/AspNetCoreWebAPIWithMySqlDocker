@@ -56,4 +56,15 @@ conferenceapp-mysql    latest              07345c95e5a6        8 minutes ago    
 
 ## During development 
 
+Stop both containers
 
+``` docker ps -a ```
+```
+CONTAINER ID        IMAGE                  COMMAND                  CREATED             STATUS                      PORTS               NAMES
+7c72c49ac0db        conferenceapp-webapi   "dotnet run"             33 minutes ago      Exited (0) 38 seconds ago                       aspnetcorewebapiwithmysqldocker_aspnetcoreserver_1
+b53182ab27a5        conferenceapp-mysql    "docker-entrypoint..."   33 minutes ago      Exited (0) 35 seconds ago                       aspnetcorewebapiwithmysqldocker_mysqlserver_1
+```
+
+Start only MySql container
+
+docker start b53182ab27a5
